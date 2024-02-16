@@ -34,16 +34,17 @@ int main(void) {
     }
 
     // メインループ
-    while (1) {
+    for(int i = 0; i < 256; i++) {
 
-        if (out_flag) {
+        if (i%2) {
             gpiod_line_set_value(led_line, 1);
         } else {
             gpiod_line_set_value(led_line, 0);
         }
 
-        out_flag=!out_flag;
     }
+    
+    gpiod_line_set_value(led_line, 0);
 
     // リソースを解放
     gpiod_line_release(led_line);
