@@ -44,7 +44,7 @@ int main(void) {
             gpiod_line_set_value(led_line, 0);
         }
 
-        out_flag!=outflaag;
+        out_flag!=out_flag;
     }
 
     // リソースを解放
