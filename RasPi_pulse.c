@@ -36,15 +36,13 @@ int main(void) {
     // メインループ
     while (1) {
 
-        // ボタンが押されている（HIGH）場合はLEDを点灯
         if (out_flag) {
             gpiod_line_set_value(led_line, 1);
         } else {
-            // ボタンが離された（LOW）場合はLEDを消灯
             gpiod_line_set_value(led_line, 0);
         }
 
-        out_flag!=out_flag;
+        out_flag=!out_flag;
     }
 
     // リソースを解放
