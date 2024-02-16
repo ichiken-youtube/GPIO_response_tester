@@ -70,8 +70,6 @@ int main(void) {
             gpiod_line_set_value(led_line, 0);
         }
 
-        // 短い待機時間を挟む
-        //usleep(100000); // 100ms
-
+    }
     return 0;
 }
