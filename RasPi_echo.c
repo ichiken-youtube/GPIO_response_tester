@@ -6,9 +6,19 @@
 #define BUTTON_PIN 20
 #define CONSUMER "gpio_control_consumer"
 
+struct gpiod_chip *chip;
+ struct gpiod_line *led_line, *button_line;
+
+// SIGINTシグナルを受け取ったときに実行される関数
+void signalHandler(int signalNumber) {
+    // リソースを解放
+    gpiod_line_release(led_line);
+    gpiod_line_release(button_line);
+    gpiod_chip_close(chip);
+    exit(0); // プログラムを正常に終了させる
+}
+
 int main(void) {
-    struct gpiod_chip *chip;
-    struct gpiod_line *led_line, *button_line;
     int button_state;
 
     // GPIOチップを開く
@@ -61,12 +71,6 @@ int main(void) {
 
         // 短い待機時間を挟む
         //usleep(100000); // 100ms
-    }
-
-    // リソースを解放
-    gpiod_line_release(led_line);
-    gpiod_line_release(button_line);
-    gpiod_chip_close(chip);
 
     return 0;
 }

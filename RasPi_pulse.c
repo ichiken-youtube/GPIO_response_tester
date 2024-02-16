@@ -5,9 +5,19 @@
 #define LED_PIN 21
 #define CONSUMER "gpio_control_consumer"
 
+struct gpiod_chip *chip;
+struct gpiod_line *led_line;
+
+// SIGINTシグナルを受け取ったときに実行される関数
+void signalHandler(int signalNumber) {
+    // リソースを解放
+    gpiod_line_release(led_line);
+    gpiod_chip_close(chip);
+    exit(0); // プログラムを正常に終了させる
+}
+
+
 int main(void) {
-    struct gpiod_chip *chip;
-    struct gpiod_line *led_line;
     bool out_flag;
 
     // GPIOチップを開く
@@ -34,21 +44,16 @@ int main(void) {
     }
 
     // メインループ
-    for(int i = 0; i < 256; i++) {
+    while (1) {
 
-        if (i%2) {
+        if (out_flag) {
             gpiod_line_set_value(led_line, 1);
         } else {
             gpiod_line_set_value(led_line, 0);
         }
 
+        out_flag=!out_flag;
     }
-    
-    gpiod_line_set_value(led_line, 0);
-
-    // リソースを解放
-    gpiod_line_release(led_line);
-    gpiod_chip_close(chip);
 
     return 0;
 }
