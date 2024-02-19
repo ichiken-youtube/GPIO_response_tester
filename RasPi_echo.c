@@ -23,7 +23,18 @@ int main(void) {
     int button_state;
 
     // GPIOチップを開く
-    chip = gpiod_chip_open("/dev/gpiochip0");
+    // Pi4かPi5かを引数で与えると、それによって開くチップを変える
+    if(argc == 1){
+        chip = gpiod_chip_open("/dev/gpiochip0");
+    }else{
+        if(argv[1]=="pi4"){
+            chip = gpiod_chip_open("/dev/gpiochip0");
+        }else if(argv[1]=="pi5"){
+            chip = gpiod_chip_open("/dev/gpiochip4");
+        }else{
+            chip = gpiod_chip_open("/dev/gpiochip0");
+        }
+    }
     if (!chip) {
         perror("gpiod_chip_open failed");
         return 1;
