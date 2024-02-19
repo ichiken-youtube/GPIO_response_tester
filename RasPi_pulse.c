@@ -18,7 +18,7 @@ void signalHandler(int signalNumber) {
 
 
 int main(void) {
-    bool out_flag;
+    bool out_flag = true;
 
     // GPIOチップを開く
     chip = gpiod_chip_open("/dev/gpiochip0");
