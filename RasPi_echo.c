@@ -20,7 +20,7 @@ void signalHandler(int signalNumber) {
     exit(0); // プログラムを正常に終了させる
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
     int button_state;
 
     // GPIOチップを開く
