@@ -10,7 +10,7 @@ $ sudo apt install libgpiod2 libgpiod-dev libgpiod-doc
 ```
 gccでコンパイルしてください。
 ```
-$ gcc RasPi_test.c -lgpiod
+$ gcc RasPi_***.c -lgpiod
 ```
 スイッチを押している間だけ出力がHighになります。  
 入力ピンと出力ピンの立ち上がりの時間差をオシロスコープで観察してください。  
