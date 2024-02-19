@@ -27,10 +27,11 @@ int main(void) {
     if(argc == 1){
         chip = gpiod_chip_open("/dev/gpiochip0");
     }else{
-        if(argv[1]=="pi4"){
+        if(strcmp(argv[1],"pi4")==0){
             chip = gpiod_chip_open("/dev/gpiochip0");
-        }else if(argv[1]=="pi5"){
+        }else if(strcmp(argv[1],"pi5")==0){
             chip = gpiod_chip_open("/dev/gpiochip4");
+            printf("This program is running on RaspberryPi5!!");
         }else{
             chip = gpiod_chip_open("/dev/gpiochip0");
         }
