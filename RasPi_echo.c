@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
+#include <string.h>
 
 #define LED_PIN 21
 #define BUTTON_PIN 20
@@ -19,7 +20,7 @@ void signalHandler(int signalNumber) {
     exit(0); // プログラムを正常に終了させる
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
     int button_state;
 
     // GPIOチップを開く
@@ -27,10 +28,9 @@ int main(void) {
     if(argc == 1){
         chip = gpiod_chip_open("/dev/gpiochip0");
     }else{
-        if(argv[1]=="pi4"){
-            chip = gpiod_chip_open("/dev/gpiochip0");
-        }else if(argv[1]=="pi5"){
+        if(strcmp(argv[1],"pi5")==0){
             chip = gpiod_chip_open("/dev/gpiochip4");
+            printf("This program is running on RaspberryPi5!!");
         }else{
             chip = gpiod_chip_open("/dev/gpiochip0");
         }
