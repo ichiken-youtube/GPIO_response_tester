@@ -7,7 +7,7 @@ void setup() {
   pinMode(17, INPUT_PULLUP);
   GPIO_OUT_CLR |= 1ul << 16;
   while(1){
-    if((GPIO_IN_BTN >> 17)%2){
+    if(!(GPIO_IN_BTN & 1ul << 17)){
       GPIO_OUT_SET |= 1ul << 16;
     }else{
       GPIO_OUT_CLR |= 1ul << 16;
