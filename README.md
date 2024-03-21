@@ -1,5 +1,5 @@
 # 概要
-イチケンがRaspberryPi5のレビュー動画内で使用した、RasPiシリーズ各種やマイコンのGPIOピンの応答速度を計測するためのプログラムです。  
+イチケンが[RaspberryPi5のレビュー動画](https://youtu.be/KUwH7JNcvJ0)内で使用した、RasPiシリーズ各種やマイコンのGPIOピンの応答速度を計測するためのプログラムです。  
 
 # RaspberryPi4/5
 RaspberryPiのGPIOピン20に入力スイッチ、21に出力が繋がるように配線してください。  
